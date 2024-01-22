@@ -23,7 +23,7 @@ const playListSong = songs.filter(
         <img
           src={playlists?.cover}
           alt={`Cover of ${playlists?.title}`}
-          class="object-cover w-full h-full shadow-lg"
+          class="object-cover w-full h-full shadow-2xl"
           transition:name=`playlist ${playlists?.id} image`
         />
       </picture>
@@ -38,7 +38,7 @@ const playListSong = songs.filter(
 
         <div class="flex-1 flex items-end">
           <div class="text-sm text-gray-300 font-normal">
-            <div transition:name=`playlist ${id} artists`>
+            <div transition:name=`playlist ${playlists?.id} artists`>
               <span>{playlists?.artists.join(", ")}</span>
             </div>
             <p class="mt-1">
@@ -51,7 +51,9 @@ const playListSong = songs.filter(
   </div>
 
   <div class="relative z-10 px-6 pt-10"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80">
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-10"
+  >
   </div>
 
   <style></style>
