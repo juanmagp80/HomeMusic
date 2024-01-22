@@ -5,11 +5,15 @@ import Search from "../icons/Search.astro";
 import SideMenuItem from "./SideMenuItem.astro";
 import SideMenuCard from "./SideMenuCard.astro";
 import { playlists } from "@/lib/data";
+import Logo from "./Logo.astro";
 ---
 
 <nav class="flex flex-col flex-1 gap-2">
   <div class="bg-zinc-900 rounded-lg p-2">
     <ul>
+      <SideMenuItem href="/">
+        <Logo />
+      </SideMenuItem>
       <SideMenuItem href="/">
         <Home />
         Inicio
