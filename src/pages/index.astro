@@ -3,17 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import PlayListItemCard from "../components/PlaylistItemCard.astro";
 import { playlists } from "../lib/data";
 import Greeting from "../components/Greeting.svelte";
-interface Playlist {
-  id: string;
-  name: string;
-  // añade aquí cualquier otro campo que pueda tener una playlist
-}
-interface Song {
-  id: string;
-  title: string;
-  artist: string;
-  // añade aquí cualquier otro campo que pueda tener una canción
-}
 ---
 
 <Layout title="Spotify Clone">
