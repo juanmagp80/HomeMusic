@@ -4,8 +4,13 @@ import Home from "../icons/Home.astro";
 import Search from "../icons/Search.astro";
 import SideMenuItem from "./SideMenuItem.astro";
 import SideMenuCard from "./SideMenuCard.astro";
-import { playlists } from "@/lib/data";
+import { playlists } from "../lib/data";
 import Logo from "./Logo.astro";
+interface playlist {
+  id: string;
+  name: string;
+  // añade aquí cualquier otro campo que pueda tener una playlist
+}
 ---
 
 <nav class="flex flex-col flex-1 gap-2">

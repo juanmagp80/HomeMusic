@@ -2,14 +2,7 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "baseUrl": "/Users/juanmanuelgarridoportillo/Proyectos/spotifyastro",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@/lib": [
-        "src/lib/*"
-      ]
-    },
+
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
