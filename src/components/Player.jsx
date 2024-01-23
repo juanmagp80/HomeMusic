@@ -1,5 +1,5 @@
-import { set } from "astro/zod";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { usePlayerStore } from "../store/playerStore";
 
 export const Pause = ({ className }) => (
   <svg
@@ -28,27 +28,48 @@ export const Play = ({ className }) => (
 );
 
 export function Player() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { currentMusic, isPlaying, setIsPlaying } = usePlayerStore(
+    (state) => state
+  );
+  const audioRef = useRef();
 
+  useEffect(() => {
+    isPlaying ? audioRef.current.play() : audioRef.current.pause();
+  }, [isPlaying]);
+
+  useEffect(() => {
+    const { song, playlist, songs } = currentMusic;
+    if (song) {
+      const src = `/music/${playlist?.id}/0${song.id}.mp3`;
+      audioRef.current.src = src;
+      audioRef.current.play();
+    }
+  }, [currentMusic]);
+
+  const handleClick = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.src = `/music/1/01.mp3`;
+      audioRef.current.play();
+      audioRef.current.volume = 0.1;
+    }
+    setIsPlaying(!isPlaying);
+  };
   return (
     <div className="flex flex-row justify-between w-full px-1 z-50">
-      <div className="w-[200px]">CurrentSong</div>
+      <div>CurrentSong</div>
 
       <div className="grid place-content-center gap-4  flex-1">
-        <div className="flex justify-center flex-col items-center">
-          <button
-            className="bg-white rounded-full p-2"
-            onClick={() => setIsPlaying(!isPlaying)}
-          >
+        <div className="flex justify-center ">
+          <button className="bg-white rounded-full p-2" onClick={handleClick}>
             {isPlaying ? <Pause /> : <Play />}
           </button>
         </div>
-        <div className="flex justify-center">
-          <Play />
-        </div>
-        <div>Reproductor</div>
-        <div>Volumen</div>
       </div>
+      <div className="grid place-content-center"></div>
+
+      <audio ref={audioRef}></audio>
     </div>
   );
 }
